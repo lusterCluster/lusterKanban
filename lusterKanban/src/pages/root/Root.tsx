@@ -1,31 +1,28 @@
-import { useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import Switch from "../../components/Switch/Switch";
 import DesktopLayout from "../../layout/desktop/MainLayout";
 import MobileLayout from "../../layout/mobile/MainLayout";
-import { PALLETE, Pallete, PalleteNames } from "../../store/style";
-
-
+import { ThemeContext } from "../../store/context/theme";
 
 const Root = () => {
-  const [pallete, setPallete] = useState(Pallete.Nebula)
-  const changePallete = (palleteName: PalleteNames) => setPallete(Pallete[palleteName])
-  useLayoutEffect(() => {
-    // Seleccionar el elemento :root y aplicar el background-color
-    document.documentElement.style.backgroundColor = pallete.primary[700];
+  const themeContext = useContext(ThemeContext);
+  const [isOn, setIsOn] = useState(false);
+  const handleToggle = () => {
+    setIsOn(!isOn);
+    themeContext?.toggleDarkMode();
+  };
 
-    // Limpiar el efecto al desmontar el componente si es necesario
-    return () => {
-      document.documentElement.style.backgroundColor = "";
-    };
-  }, [pallete]);
   return (
-    <>
-      <DesktopLayout>
-        <div>Desktop Layout</div>        
+    <div      
+    >
+      <DesktopLayout>        
+        <Switch isOn={isOn} handleToggle={() => handleToggle()} />
+        <div></div>
       </DesktopLayout>
       <MobileLayout>
-        <div>Mobile Layout</div>
+        <div></div>
       </MobileLayout>
-    </>
+    </div>
   );
 };
 

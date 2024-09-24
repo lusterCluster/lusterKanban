@@ -1,9 +1,7 @@
-/* :root {
-    background-color: #C3E0E5;
-  } */
+
 .desktop {
     display: grid;
-    padding: 0px;
+    padding: 0px;    
     grid-template-columns: repeat(6, 1fr);
     place-items: center;
   }
@@ -16,16 +14,44 @@
     .desktop {
       display: none;
     }
-  
     .mobile {
       display: grid;
     }
+    
   }
   @media only screen and (min-width: 1024px) {
     .desktop {
-        display: grid;
-        padding: 16px;
-        grid-template-columns: repeat(12, 1fr);
-        place-items: center;
-    }    
+      display: grid;
+      padding: 16px;
+      grid-template-columns: repeat(12, 1fr);        
+      place-items: center;
+    } 
+    
+  }
+  .appbar{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    height: 62px;
+  }
+
+  .switch-on {
+    animation: switchOn 800ms forwards ;    
+  }
+  @keyframes switchOn {
+    100% {
+      transform: translateX(-24px);
+    }
+  }
+  .switch-off {
+    animation: switchOff 800ms forwards ;    
+    /* transform: translateX(-48px); */
+  }
+  @keyframes switchOff {
+    0% {
+      transform: translateX(-24px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
   }

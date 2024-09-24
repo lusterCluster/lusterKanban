@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { Outlet } from "react-router-dom";
-import { Theme } from "../../store/style";
+import { EndlessSpring } from "../../store/style";
+import AppBar from "../../components/AppBar";
 
 type Props = {
   children: React.ReactNode;
@@ -9,7 +10,8 @@ type Props = {
 const DesktopLayout: FC<Props> = ({ children }) => {
   return (
     <>
-      <div style={{ color: Theme.Nebula.dark.text.color, fontFamily: 'sans-serif'}} className="desktop">
+      <div className="desktop" >
+        <AppBar/>
         {children}
       </div>
       <Outlet />
