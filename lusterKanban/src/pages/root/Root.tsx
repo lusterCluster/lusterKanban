@@ -5,19 +5,13 @@ import MobileLayout from "../../layout/mobile/MainLayout";
 import { ThemeContext } from "../../store/context/theme";
 
 const Root = () => {
-  const themeContext = useContext(ThemeContext);
-  const [isOn, setIsOn] = useState(false);
-  const handleToggle = () => {
-    setIsOn(!isOn);
-    themeContext?.toggleDarkMode();
-  };
 
   return (
-    <div      
+    <div 
     >
       <DesktopLayout>        
-        <Switch isOn={isOn} handleToggle={() => handleToggle()} />
-        <div></div>
+        
+        <div style={{}}> Hello world</div>
       </DesktopLayout>
       <MobileLayout>
         <div></div>

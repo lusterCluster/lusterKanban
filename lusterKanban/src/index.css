@@ -1,57 +1,62 @@
-
 .desktop {
-    display: grid;
-    padding: 0px;    
-    grid-template-columns: repeat(6, 1fr);
-    place-items: center;
-  }
-  
-  .mobile {
+  display: grid;
+  padding: 0px;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  height: 100vh;
+  margin-top: 100px;
+  place-items: center;
+}
+
+.mobile {
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  .desktop {
     display: none;
   }
+  .mobile {
+    display: grid;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .desktop {
+    display: grid;
+    padding: 16px;
+    grid-template-columns: repeat(12, 1fr);
+    place-items: center;
+  }
+}
+.appbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  height: 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   
-  @media only screen and (max-width: 640px) {
-    .desktop {
-      display: none;
-    }
-    .mobile {
-      display: grid;
-    }
-    
-  }
-  @media only screen and (min-width: 1024px) {
-    .desktop {
-      display: grid;
-      padding: 16px;
-      grid-template-columns: repeat(12, 1fr);        
-      place-items: center;
-    } 
-    
-  }
-  .appbar{
-    width: 100%;
-    position: fixed;
-    top: 0;
-    height: 62px;
-  }
+  padding: 13px 0 ;
+  box-shadow: rgba(13, 21, 34, 0.9) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+}
 
-  .switch-on {
-    animation: switchOn 800ms forwards ;    
+.switch-on {
+  animation: switchOn 800ms forwards;
+}
+@keyframes switchOn {
+  100% {
+    transform: translateX(-24px);
   }
-  @keyframes switchOn {
-    100% {
-      transform: translateX(-24px);
-    }
+}
+.switch-off {
+  animation: switchOff 800ms forwards;
+  /* transform: translateX(-48px); */
+}
+@keyframes switchOff {
+  0% {
+    transform: translateX(-24px);
   }
-  .switch-off {
-    animation: switchOff 800ms forwards ;    
-    /* transform: translateX(-48px); */
+  100% {
+    transform: translateX(0px);
   }
-  @keyframes switchOff {
-    0% {
-      transform: translateX(-24px);
-    }
-    100% {
-      transform: translateX(0px);
-    }
-  }
+}

@@ -1,10 +1,16 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { ThemeContext } from "../store/context/theme";
+import Switch from "./Switch/Switch";
 
 type Props = {};
 
 const AppBar = () => {
   const themeContext = useContext(ThemeContext);
+  const [isOn, setIsOn] = useState(false);
+  const handleToggle = () => {
+    setIsOn(!isOn);
+    themeContext?.toggleDarkMode();
+  };
 
   return (
     <div
@@ -13,10 +19,14 @@ const AppBar = () => {
         background:
           themeContext?.theme.color[themeContext.colorMode!].palleteVariants
             .primary[themeContext.colorMode! === "dark" ? 600 : 500],
-            width:"100%"
       }}
     >
-      appbar
+      <section>
+        <span className="material-symbols-outlined">menu</span>
+      </section>
+      <section style={{ gridColumnStart: 3 }}>
+        <Switch isOn={isOn} handleToggle={() => handleToggle()} />
+      </section>
     </div>
   );
 };
