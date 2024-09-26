@@ -2,13 +2,14 @@ import React, { useContext, useState } from "react";
 import { NavBar } from "./navbar";
 import { ThemeContext } from "../../store/context/theme";
 import { Link, NavLink } from "react-router-dom";
+import usePallete from "../../hooks/theme/usePallete";
 
 const Styles = {
   container: {
     height: NavBar.container.height,
     width: NavBar.container.width,
     borderRadius: NavBar.container.shape,
-    bottom: "0",
+    bottom: "1px",
     paddingBottom: NavBar.bottomPadding,
     paddingTop: NavBar.topPadding,
     left: "0",
@@ -39,45 +40,42 @@ const Navigation = [
 
 const NavigationBar = () => {
   const themeContext = useContext(ThemeContext);
+  const {getColor} = usePallete()
   return (
     <div
       id="navbar-container"
       style={{
         ...Styles.container,
         background:
-          themeContext?.theme.color[themeContext.colorMode!].palleteVariants
-            .primary[themeContext.colorMode! === "dark" ? 600 : 500],
+          
+            getColor("primary", themeContext?.isDark ? "600" : "500"),
         position: "fixed",
-        color: themeContext?.theme.color[themeContext.colorMode!].text,
+        
       }}
     >
       <div
-        style={{
-          paddingTop: NavBar.topPadding,
-          paddingBottom: NavBar.bottomPadding,
+        style={{          
           display: "grid",
           placeItems: "center",
           gridTemplateColumns: `repeat(${Navigation.length}, 1fr)`,
-          gridTemplateRows: "repaeat(2, 1fr)",
+          // gridTemplateRows: "repaeat(2, 1fr)",
           gap: NavBar.paddingBetween,
         }}
       >
         {Navigation.map((item, i) => (
           <>
+          <div style={{display: "inline-block",
+                      flexDirection: "column", justifyItems: "center", height: "80px"}} >
+
             <NavLink
               style={({ isActive }) => {
                 return isActive
                   ? {
-                      backgroundColor:
-                        themeContext?.theme.color[themeContext.colorMode!]
-                          .palleteVariants.primary[
-                          themeContext.colorMode! === "dark" ? 500 : 600
-                        ],
-                      height: "32px",
-                      width: "64px",
-                      textAlign: "center",
-                      paddingTop: "5px",
-                      borderRadius: "16px",
+                      backgroundColor:getColor("primary", themeContext?.isDark ? "600" : "500"),
+                      // height: "32px",
+                      // width: "64px",
+                      textAlign: "center",                      
+                      borderRadius: "16px",                      
                     }
                   : {};
               }}
@@ -89,9 +87,8 @@ const NavigationBar = () => {
                 className="material-symbols-outlined"
                 style={{
                   textAlign: "center",
-                  fontSize: NavBar.iconSize,                  
-                  color:
-                    themeContext?.theme.color[themeContext.colorMode!].text,
+                  fontSize: NavBar.iconSize,                                                        
+                  color: getColor("primary", "100"),
                 }}
               >
                 {item.icon}
@@ -99,15 +96,17 @@ const NavigationBar = () => {
             </NavLink>
             <p
               key={"navbar-label-" + i}
-              style={{
-                gridRowStart: 2,
-                textAlign: "center",
-                color: themeContext?.theme.color[themeContext.colorMode!].text,
+              style={{                
+                textAlign: "center",                
+                color: getColor("primary", "100"),
+                height: "21px",
+                fontSize: "12px"
                 
               }}
             >
               {item.label}
             </p>
+          </div>
           </>
         ))}
       </div>

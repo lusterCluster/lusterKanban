@@ -8,8 +8,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const DesktopLayout: FC<Props> = ({ children }) => {
-  const themeContext = useContext(ThemeContext);
+const DesktopLayout: FC<Props> = ({ children }) => {  
   return (
     <>
       <div

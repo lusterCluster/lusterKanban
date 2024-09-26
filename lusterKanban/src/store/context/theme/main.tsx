@@ -6,32 +6,32 @@ type ProviderProps = {
 }
 type IThemeContext = {
   theme: ITheme
-  colorMode: ColorThmeType
+  isDark: boolean
   toggleDarkMode: () => void
 }
 export type ColorThmeType = "dark" | "light" | null
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
-    const [colorMode, setColorMode] = useState<ColorThmeType>(localStorage.getItem("color") as ColorThmeType)
+    const [isDark, setIsDark] = useState(true)
     const [theme, setTheme] = useState(EndlessSpring)
     const toggleDarkMode = () => {
-      localStorage.setItem("color", colorMode === 'dark'?"light": colorMode==="light"? "dark":"")
-      setColorMode(colorMode === 'dark' ? 'light' : "dark")
+      localStorage.setItem("isDark", isDark ? "0": "1")
+      setIsDark(!isDark)
     }
 
   const themeContext: IThemeContext = {
     theme: theme,
-    colorMode: colorMode,
+    isDark: isDark,
     toggleDarkMode: toggleDarkMode
   }
     useLayoutEffect(() => {
         // Seleccionar el elemento :root y aplicar el background-color
-        document.documentElement.style.backgroundColor = theme.color[colorMode!].background;
-        document.documentElement.style.color = theme.color[colorMode!].text;
+        document.documentElement.style.backgroundColor = theme.color[isDark? "dark":"light"].background;
+        document.documentElement.style.color = theme.color[isDark? "dark":"light"].text;
         document.documentElement.style.fontFamily = theme.typography.fontFamily;
         document.documentElement.style.fontSize = theme.typography.fontSize[16];
-        console.log(colorMode)
-        localStorage.setItem("color", colorMode!)
+        console.log(isDark)
+        localStorage.setItem("isDark", isDark ? "0": "1")
     
         // Limpiar el efecto al desmontar el componente si es necesario
         return () => {

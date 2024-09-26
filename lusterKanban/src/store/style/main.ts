@@ -149,7 +149,7 @@ export const EndlessSpring:ITheme = {
     },
     light: {
       background: EndlessSpringColors.primary[100],
-      text: EndlessSpringColors.secondary[200],
+      text: EndlessSpringColors.primary[700],
       accent: EndlessSpringColors.secondary[100],
       palleteVariants: EndlessSpringColors,
     },

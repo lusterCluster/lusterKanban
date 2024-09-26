@@ -2,7 +2,7 @@ import { NavigationBarType } from "./interfaces";
 
 export const NavBar: NavigationBarType = {
   container: {
-    height: "80px",
+    height: "52px",
     width: "100%",
     shape: "0px",
   },
