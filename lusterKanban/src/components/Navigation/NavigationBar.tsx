@@ -19,22 +19,22 @@ const Navigation = [
   {
     icon: "home",
     path: "/",
-    label: "Label",
+    label: "Home",
   },
   {
-    icon: "favorite",
+    icon: "dashboard",
     path: "/1",
-    label: "Label",
+    label: "Boards",
   },
   {
     icon: "person",
     path: "/2",
-    label: "Label",
+    label: "Projects",
   },
   {
-    icon: "home",
+    icon: "task_alt",
     path: "/3",
-    label: "Label",
+    label: "Issues",
   },
 ];
 
@@ -57,23 +57,22 @@ const NavigationBar = () => {
         style={{          
           display: "grid",
           placeItems: "center",
-          gridTemplateColumns: `repeat(${Navigation.length}, 1fr)`,
-          // gridTemplateRows: "repaeat(2, 1fr)",
+          gridTemplateColumns: `repeat(${Navigation.length}, 1fr)`,          
           gap: NavBar.paddingBetween,
         }}
       >
         {Navigation.map((item, i) => (
           <>
-          <div style={{display: "inline-block",
-                      flexDirection: "column", justifyItems: "center", height: "80px"}} >
+          <div style={{display: "flex",
+                      flexDirection: "column", justifyItems: "center", textAlign: "center"}} >
 
             <NavLink
               style={({ isActive }) => {
                 return isActive
                   ? {
-                      backgroundColor:getColor("primary", themeContext?.isDark ? "600" : "500"),
-                      // height: "32px",
-                      // width: "64px",
+                      backgroundColor:getColor("primary", themeContext?.isDark ? "500" : "400"),
+                      height: "32px",
+                      width: "64px",
                       textAlign: "center",                      
                       borderRadius: "16px",                      
                     }
@@ -86,7 +85,7 @@ const NavigationBar = () => {
                 key={"navbar-icon-" + i}
                 className="material-symbols-outlined"
                 style={{
-                  textAlign: "center",
+                  textAlign: "center",                  
                   fontSize: NavBar.iconSize,                                                        
                   color: getColor("primary", "100"),
                 }}

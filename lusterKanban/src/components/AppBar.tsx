@@ -9,9 +9,18 @@ const AppBar = () => {
   const themeContext = useContext(ThemeContext);
   const [isOn, setIsOn] = useState(false);
   const { getColor } = usePallete();
+  const [icon, setIcon] = useState(localStorage.getItem("isDark") === "0" ? "light_mode" : "dark_mode")
+  const handleMouseEnter = () => {
+    document.getElementById("dark-mode-button")!.style.backgroundColor =  getColor("primary", themeContext?.isDark ? "700" : "400")!
+  }
+  const handleMouseLeave = () => {
+    document.getElementById("dark-mode-button")!.style.backgroundColor =  getColor("primary", themeContext?.isDark ? "600" : "500")!
+  }
   const handleToggle = () => {
     setIsOn(!isOn);
+    setIcon(isOn ? "light_mode" : "dark_mode")
     themeContext?.toggleDarkMode();
+    // document.getElementById("dark-mode-button")!.style.backgroundColor =  getColor("primary", themeContext?.isDark ? "600" : "500")!
   };
 
   return (
@@ -31,7 +40,7 @@ const AppBar = () => {
       </section>
       <section style={{ gridColumnStart: 3, display: "flex", justifyContent: "end", paddingRight:"21px" }}>
         {/* <Switch isOn={isOn} handleToggle={() => handleToggle()} /> */}
-        <button style={{ borderRadius: 100, background: getColor("primary", "600"),
+        <button id="dark-mode-button" style={{ borderRadius: 100, background: "none",
           padding: "5px",
           height: "34px",
           width: "34px",
@@ -39,8 +48,10 @@ const AppBar = () => {
           
          }} 
          onClick={handleToggle}
+         onMouseEnter={handleMouseEnter}
+         onMouseLeave={handleMouseLeave}
          >
-          <span  className="material-symbols-outlined" style={{fontSize: "21px", color:getColor("primary", "100")}} >dark_mode</span> 
+          <span  className="material-symbols-outlined" style={{fontSize: "21px", color:getColor("primary", "100")}} >{icon ?? "dark_mode"}</span> 
         </button>
       </section>
     </div>

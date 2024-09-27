@@ -12,7 +12,7 @@ type IThemeContext = {
 export type ColorThmeType = "dark" | "light" | null
 export const ThemeContext = createContext<IThemeContext | undefined>(undefined)
 const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
-    const [isDark, setIsDark] = useState(true)
+    const [isDark, setIsDark] = useState(localStorage.getItem("isDark") === "0" ? true : false)
     const [theme, setTheme] = useState(EndlessSpring)
     const toggleDarkMode = () => {
       localStorage.setItem("isDark", isDark ? "0": "1")
