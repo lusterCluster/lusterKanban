@@ -26,8 +26,8 @@ const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
   }
     useLayoutEffect(() => {
         // Seleccionar el elemento :root y aplicar el background-color
-        document.documentElement.style.backgroundColor = theme.color[isDark? "dark":"light"].background;
-        document.documentElement.style.color = theme.color[isDark? "dark":"light"].text;
+        document.documentElement.style.backgroundColor = theme.colorMode.getColor!(isDark).background;
+        document.documentElement.style.color = theme.colorMode.getColor!(isDark).text;
         document.documentElement.style.fontFamily = theme.typography.fontFamily;
         document.documentElement.style.fontSize = theme.typography.fontSize[16];
         console.log(isDark)

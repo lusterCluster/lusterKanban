@@ -39,8 +39,8 @@ const Navigation = [
 ];
 
 const NavigationBar = () => {
-  const themeContext = useContext(ThemeContext);
-  const {getColor} = usePallete()
+  const context = useContext(ThemeContext);
+  const {getVariant} = usePallete()
   return (
     <div
       id="navbar-container"
@@ -48,7 +48,7 @@ const NavigationBar = () => {
         ...Styles.container,
         background:
           
-            getColor("primary", themeContext?.isDark ? "600" : "500"),
+            getVariant(context?.isDark ? "600" : "400"),
         position: "fixed",
         
       }}
@@ -70,7 +70,7 @@ const NavigationBar = () => {
               style={({ isActive }) => {
                 return isActive
                   ? {
-                      backgroundColor:getColor("primary", themeContext?.isDark ? "500" : "400"),
+                      backgroundColor:getVariant("500" ),
                       height: "32px",
                       width: "64px",
                       textAlign: "center",                      
@@ -87,7 +87,7 @@ const NavigationBar = () => {
                 style={{
                   textAlign: "center",                  
                   fontSize: NavBar.iconSize,                                                        
-                  color: getColor("primary", "100"),
+                  color: getVariant("100"),
                 }}
               >
                 {item.icon}
@@ -97,7 +97,7 @@ const NavigationBar = () => {
               key={"navbar-label-" + i}
               style={{                
                 textAlign: "center",                
-                color: getColor("primary", "100"),
+                color: getVariant("100"),
                 height: "21px",
                 fontSize: "12px"
                 

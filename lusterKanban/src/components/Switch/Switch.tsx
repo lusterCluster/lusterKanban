@@ -7,18 +7,15 @@ type Props = {
   isOn: boolean;
 };
 const Switch: FC<Props> = ({ handleToggle, isOn }) => {
-  const themeContext = useContext(ThemeContext);
-  const { getColor } = usePallete();
+  const context = useContext(ThemeContext);
+  const { getVariant } = usePallete();
   return (
     <div
       onClick={handleToggle}
       style={{
         width: "55px",
         height: "34px",
-        backgroundColor: getColor(
-          "primary",
-          themeContext?.isDark ? "500" : "300"
-        ),
+        backgroundColor: getVariant(context?.isDark ? "500" : "300"),
         borderRadius: "100px",
         display: "flex",
         justifyContent: "flex-end",
@@ -29,7 +26,7 @@ const Switch: FC<Props> = ({ handleToggle, isOn }) => {
         style={{
           width: "21px",
           height: "21px",
-          backgroundColor: getColor("primary", "100"),
+          backgroundColor: getVariant("100"),
           borderRadius: "24px",
           marginRight: "5px",
           marginTop: "5px",

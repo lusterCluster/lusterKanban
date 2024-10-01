@@ -3,11 +3,9 @@ import { ThemeContext } from "../../store/context/theme";
 import { PalleteVariantTypes, ShadeTypes } from "../../store/style";
 
 function usePallete() {
-  const themeContext = useContext(ThemeContext);
-  const getColor = (variant: keyof PalleteVariantTypes, shade: keyof ShadeTypes) =>
-    themeContext?.theme.color[themeContext.isDark ? "dark":"light"].palleteVariants[
-      variant
-    ]?.[shade];
-    return {getColor}
+  const context = useContext(ThemeContext);
+  const getVariant = (shade: keyof ShadeTypes) =>
+    context?.theme.pallete[shade]
+    return {getVariant}
 }
 export default usePallete

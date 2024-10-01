@@ -9,7 +9,8 @@ export interface ITheme {
   id: ThemeIdTypes
   // isDark: boolean
   // toggleDarkMode: () => void
-  color:IColor
+  colorMode:IModes
+  pallete: ShadeTypes
   typography: TextType
 }
 export type ThemeGlobalsType = {
@@ -20,12 +21,10 @@ export type ThemeGlobalsType = {
 };
 
 //----------------------- Color -----------------------//
-export interface IColor {
-  light: ColorTypes
-  dark: ColorTypes
+export interface IModes {
+  getColor?:(isDark: boolean) => ColorTypes  
 }
-export type ColorTypes = {
-  palleteVariants: PalleteVariantTypes;
+export type ColorTypes = {  
   text: string;
   background: string;
   accent: string;

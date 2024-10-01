@@ -138,21 +138,15 @@ export const EndlessSpring:ITheme = {
       },
     },
   
-  color: { 
-
-    dark: {
-
-      background: EndlessSpringColors.primary[700],
-      text: EndlessSpringColors.primary[100],
-      accent: EndlessSpringColors.secondary[100],
-      palleteVariants: EndlessSpringColors,
-    },
-    light: {
-      background: EndlessSpringColors.primary[100],
-      text: EndlessSpringColors.primary[700],
-      accent: EndlessSpringColors.secondary[100],
-      palleteVariants: EndlessSpringColors,
-    },
+  colorMode: { 
+    getColor: (isDark:boolean) => {
+      return {
+        background: EndlessSpringColors.primary[isDark?700:100],
+        text: EndlessSpringColors.primary[isDark? 100:700],
+        accent: EndlessSpringColors.secondary[100],
+      }
+    },    
   },
+  pallete: EndlessSpringColors.primary
 };
 
