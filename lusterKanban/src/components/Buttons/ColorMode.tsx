@@ -1,16 +1,15 @@
 import { useContext, useState } from "react";
-import usePallete from "../../hooks/theme/usePallete";
 import { ThemeContext } from "../../store/context/theme";
+import { isDarkMode, Shade } from "../../store/style";
 
 const ColorMode = () => {
     const context = useContext(ThemeContext);
-    const { getVariant } = usePallete();
     const [icon, setIcon] = useState(localStorage.getItem("isDark") === "0" ? "light_mode" : "dark_mode")
     const handleMouseEnter = () => {
-      document.getElementById("dark-mode-button")!.style.backgroundColor =  getVariant(context?.isDark ? "700" : "400")!
+      document.getElementById("dark-mode-button")!.style.backgroundColor = context!.theme.pallete(isDarkMode() ? Shade.Dark : Shade.Focus) 
     }
     const handleMouseLeave = () => {
-      document.getElementById("dark-mode-button")!.style.backgroundColor =  getVariant(context?.isDark ? "600" : "500")!
+      document.getElementById("dark-mode-button")!.style.backgroundColor =  context!.theme.pallete(isDarkMode() ? Shade.SecondaryDark : Shade.Surface)
     }
     const [isOn, setIsOn] = useState(false);
     const handleToggle = () => {
@@ -30,7 +29,7 @@ const ColorMode = () => {
            onMouseEnter={handleMouseEnter}
            onMouseLeave={handleMouseLeave}
            >
-            <span  className="material-symbols-outlined" style={{fontSize: "21px", color:getVariant("100")}} >{icon}</span> 
+            <span  className="material-symbols-outlined" style={{fontSize: "21px", color:context!.theme.pallete(Shade.LightSurface),}} >{icon}</span> 
           </button>)
   }
   export default ColorMode

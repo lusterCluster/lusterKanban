@@ -1,5 +1,5 @@
 import React, { createContext, FC, useLayoutEffect, useState } from "react";
-import { EndlessSpring, ITheme } from "../../style";
+import { EndlessSpring, isDarkMode, ITheme, Shade } from "../../style";
 
 type ProviderProps = {
     children: React.ReactNode
@@ -26,8 +26,8 @@ const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
   }
     useLayoutEffect(() => {
         // Seleccionar el elemento :root y aplicar el background-color
-        document.documentElement.style.backgroundColor = theme.colorMode.getColor!(isDark).background;
-        document.documentElement.style.color = theme.colorMode.getColor!(isDark).text;
+        document.documentElement.style.backgroundColor = theme.pallete(isDarkMode() ? Shade.Dark : Shade.LightSurface)
+        document.documentElement.style.color = theme.pallete(isDarkMode() ? Shade.LightSurface : Shade.Dark)
         document.documentElement.style.fontFamily = theme.typography.fontFamily;
         document.documentElement.style.fontSize = theme.typography.fontSize[16];
         console.log(isDark)
@@ -37,7 +37,7 @@ const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
         return () => {
           document.documentElement.style.backgroundColor = "";
         };
-      }, [toggleDarkMode]);
+      }, [isDark]);
 
       return <ThemeContext.Provider value={themeContext}>{children}</ThemeContext.Provider>
 }

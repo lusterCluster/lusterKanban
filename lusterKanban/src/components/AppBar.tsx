@@ -1,25 +1,25 @@
 import { useContext, useState } from "react";
 import { ThemeContext } from "../store/context/theme";
-import Switch from "./Switch/Switch";
-import usePallete from "../hooks/theme/usePallete";
+import { isDarkMode, Shade } from "../store/style";
+
 
 type Props = {};
 
 const ColorMode = () => {
-  const themeContext = useContext(ThemeContext);
-  const { getVariant } = usePallete();
+  const context = useContext(ThemeContext);
+ 
   const [icon, setIcon] = useState(localStorage.getItem("isDark") === "0" ? "light_mode" : "dark_mode")
   const handleMouseEnter = () => {
-    document.getElementById("dark-mode-button")!.style.backgroundColor =  getVariant( themeContext?.isDark ? "700" : "400")!
+    document.getElementById("dark-mode-button")!.style.backgroundColor = context!.theme.pallete(isDarkMode() ? Shade.Dark : Shade.Focus)
   }
   const handleMouseLeave = () => {
-    document.getElementById("dark-mode-button")!.style.backgroundColor =  getVariant( themeContext?.isDark ? "600" : "500")!
+    document.getElementById("dark-mode-button")!.style.backgroundColor =  context!.theme.pallete(isDarkMode() ? Shade.SecondaryDark : Shade.Surface)
   }
   const [isOn, setIsOn] = useState(false);
   const handleToggle = () => {
     setIsOn(!isOn);
     setIcon(isOn ? "light_mode" : "dark_mode")
-    themeContext?.toggleDarkMode();
+    context?.toggleDarkMode();
     // document.getElementById("dark-mode-button")!.style.backgroundColor =  getVariant( themeContext?.isDark ? "600" : "500")!
   };
   
@@ -34,25 +34,25 @@ const ColorMode = () => {
          onMouseEnter={handleMouseEnter}
          onMouseLeave={handleMouseLeave}
          >
-          <span  className="material-symbols-outlined" style={{fontSize: "21px", color:getVariant( "100")}} >{icon ?? "dark_mode"}</span> 
+          <span  className="material-symbols-outlined" style={{fontSize: "21px", color:context?.theme.pallete(Shade.LightSurface)}} >{icon ?? "dark_mode"}</span> 
         </button>)
 }
 
 const AppBar = () => {
   const context = useContext(ThemeContext);
-  const { getVariant } = usePallete();
+
 
   return (
     <div
       className="appbar"
       style={{
-        background: getVariant( context!.isDark ? "600" : "500"),
+        background: context?.theme.pallete(isDarkMode() ? Shade.SecondaryDark : Shade.Surface),
       }}
     >
       <section>
         <span
           className="material-symbols-outlined"
-          style={{ color: getVariant( "100") }}
+          style={{ color: context?.theme.pallete(Shade.LightSurface) }}
         >
           menu
         </span>

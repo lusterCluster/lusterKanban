@@ -2,7 +2,8 @@ import React, { useContext, useState } from "react";
 import { NavBar } from "./navbar";
 import { ThemeContext } from "../../store/context/theme";
 import { Link, NavLink } from "react-router-dom";
-import usePallete from "../../hooks/theme/usePallete";
+import { isDarkMode, Shade } from "../../store/style";
+
 
 const Styles = {
   container: {
@@ -40,15 +41,15 @@ const Navigation = [
 
 const NavigationBar = () => {
   const context = useContext(ThemeContext);
-  const {getVariant} = usePallete()
+
   return (
     <div
       id="navbar-container"
       style={{
         ...Styles.container,
-        background:
+        background: context?.theme.pallete( isDarkMode() ? Shade.SecondaryDark : Shade.SecondarySurface), 
           
-            getVariant(context?.isDark ? "600" : "400"),
+            // getVariant(context?.isDark ? "600" : "400"),
         position: "fixed",
         
       }}
@@ -70,7 +71,7 @@ const NavigationBar = () => {
               style={({ isActive }) => {
                 return isActive
                   ? {
-                      backgroundColor:getVariant("500" ),
+                      backgroundColor:context?.theme.pallete(Shade.Surface),
                       height: "32px",
                       width: "64px",
                       textAlign: "center",                      
@@ -87,7 +88,7 @@ const NavigationBar = () => {
                 style={{
                   textAlign: "center",                  
                   fontSize: NavBar.iconSize,                                                        
-                  color: getVariant("100"),
+                  color: context?.theme.pallete(Shade.LightSurface),
                 }}
               >
                 {item.icon}
@@ -97,7 +98,7 @@ const NavigationBar = () => {
               key={"navbar-label-" + i}
               style={{                
                 textAlign: "center",                
-                color: getVariant("100"),
+                color: context?.theme.pallete(Shade.LightSurface),
                 height: "21px",
                 fontSize: "12px"
                 

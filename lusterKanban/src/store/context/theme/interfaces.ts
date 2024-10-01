@@ -1,6 +1,10 @@
 export const THEME_ID = {
   EndlessSpring: "EndlessSpring",
   Nebula: "Nebula",
+  GrayScale: "GrayScale",
+  Chainsaw: "Chainsaw",
+  Icecream: "Icecream",
+  Sky: "Sky",
 } as const;
 
 export type ThemeIdTypes = keyof typeof THEME_ID;
@@ -9,8 +13,8 @@ export interface ITheme {
   id: ThemeIdTypes
   // isDark: boolean
   // toggleDarkMode: () => void
-  colorMode:IModes
-  pallete: ShadeTypes
+  background: string
+  pallete: (shade: Shade) => string
   typography: TextType
 }
 export type ThemeGlobalsType = {
@@ -21,6 +25,8 @@ export type ThemeGlobalsType = {
 };
 
 //----------------------- Color -----------------------//
+const SHADES = ["700", "600", "500", "400", "300", "200", "100"] as const;
+
 export interface IModes {
   getColor?:(isDark: boolean) => ColorTypes  
 }
@@ -29,16 +35,9 @@ export type ColorTypes = {
   background: string;
   accent: string;
 };
-export type PalleteType = {
-  [key in ThemeIdTypes]: PalleteVariantTypes;
-};
-export type PalleteVariantTypes = {
-  primary: ShadeTypes;
-  secondary?: ShadeTypes;
-  tertiary?: ShadeTypes;
-};
 
 export type ShadeTypes = {
+  id: ThemeIdTypes;
   "700": string;
   "600": string;
   "500": string;
@@ -47,6 +46,16 @@ export type ShadeTypes = {
   "200": string;
   "100": string;
 };
+
+export enum Shade {
+  Dark = "700",
+  SecondaryDark = "600",
+  Surface = "500",
+  SecondarySurface = "400",
+  Focus = "300",
+  Hover = "200",
+  LightSurface = "100",
+}
 
 //----------------------- Typography -----------------------//
 
@@ -74,6 +83,7 @@ export type TextType = {
     "500":  500 
     "900":  900 
   };
+  color: string
   lineHeight?: string
 };
 //----------------------- Spacing -----------------------//
