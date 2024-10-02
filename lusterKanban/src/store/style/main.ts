@@ -143,7 +143,40 @@ export const EndlessSpring: ITheme = {
     
     pallete: getEndlessSpringPallete
   }
+export const Icecream: ITheme = {
+  id: "Icecream",
+
+  typography: {
+    fontFamily: Roboto.family.fontFamily,
+    fontSize: {
+      "12": "12px",
+      "14": "14px",
+      "16": "16px",
+      "21": "21px",
+      "32": "32px",
+      "55": "55px",
+      "64": "64px",
+      "72": "72px",
+      "94": "94px",
+    },
+    fontWeight: {
+      "100": 100,
+      "300": 300,
+      "400": 400,
+      "500": 500,
+      "900": 900,
+    },
+     color: getEndlessSpringPallete(isDarkMode() ? Shade.LightSurface : Shade.Dark),
+    
+  },
+
   
+    background: getEndlessSpringPallete(isDarkMode() ? Shade.Dark : Shade.LightSurface),
+  
+    
+    pallete: getIcecreamPallete
+  }
+
 
 
 const Themes: ITheme[] = [EndlessSpring];

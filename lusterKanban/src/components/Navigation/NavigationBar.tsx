@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { FC, useContext, useState } from "react";
 import { NavBar } from "./navbar";
 import { ThemeContext } from "../../store/context/theme";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavigationType, NavLink } from "react-router-dom";
 import { isDarkMode, Shade } from "../../store/style";
-
+import { DestinationsType } from "./interfaces";
 
 const Styles = {
   container: {
@@ -16,30 +16,15 @@ const Styles = {
     left: "0",
   },
 };
-const Navigation = [
-  {
-    icon: "home",
-    path: "/",
-    label: "Home",
-  },
-  {
-    icon: "dashboard",
-    path: "/1",
-    label: "Boards",
-  },
-  {
-    icon: "person",
-    path: "/2",
-    label: "Projects",
-  },
-  {
-    icon: "task_alt",
-    path: "/3",
-    label: "Issues",
-  },
-];
 
-const NavigationBar = () => {
+
+type NavBarType = {
+  destinations: DestinationsType
+}
+type Props = {
+  navbar: NavBarType
+}
+const NavigationBar:FC<Props> = ({navbar}) => {
   const context = useContext(ThemeContext);
 
   return (
@@ -47,66 +32,72 @@ const NavigationBar = () => {
       id="navbar-container"
       style={{
         ...Styles.container,
-        background: context?.theme.pallete( isDarkMode() ? Shade.SecondaryDark : Shade.SecondarySurface), 
-          
-            // getVariant(context?.isDark ? "600" : "400"),
+        background: context?.theme.pallete(
+          isDarkMode() ? Shade.SecondaryDark : Shade.SecondarySurface
+        ),
+
+        // getVariant(context?.isDark ? "600" : "400"),
         position: "fixed",
-        
       }}
     >
       <div
-        style={{          
+        style={{
           display: "grid",
           placeItems: "center",
-          gridTemplateColumns: `repeat(${Navigation.length}, 1fr)`,          
+          gridTemplateColumns: `repeat(${navbar.destinations.length}, 1fr)`,
           gap: NavBar.paddingBetween,
         }}
       >
-        {Navigation.map((item, i) => (
+        {navbar.destinations.map((item, i) => (
           <>
-          <div style={{display: "flex",
-                      flexDirection: "column", justifyItems: "center", textAlign: "center"}} >
-
-            <NavLink
-              style={({ isActive }) => {
-                return isActive
-                  ? {
-                      backgroundColor:context?.theme.pallete(Shade.Surface),
-                      height: "32px",
-                      width: "64px",
-                      textAlign: "center",                      
-                      borderRadius: "16px",                      
-                    }
-                  : {};
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyItems: "center",
+                textAlign: "center",
               }}
-              key={"navbar-link-" + i}
-              to={item.path}
             >
-              <span
-                key={"navbar-icon-" + i}
-                className="material-symbols-outlined"
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive
+                    ? {
+                        backgroundColor: context?.theme.pallete(Shade.Surface),
+                        height: "32px",
+                        width: "64px",
+                        textAlign: "center",
+                        borderRadius: "16px",
+                      }
+                    : {};
+                }}
+                key={"navbar-link-" + i}
+                to={item.path}
+              >
+                <span
+                  key={"navbar-icon-" + i}
+                  className="material-symbols-outlined"
+                  style={{
+                    textAlign: "center",
+                    lineHeight: "1.3",
+                    fontSize: NavBar.iconSize,
+                    color: context?.theme.pallete(Shade.LightSurface),
+                  }}
+                >
+                  {item.icon}
+                </span>
+              </NavLink>
+              <p
+                key={"navbar-label-" + i}
                 style={{
-                  textAlign: "center",                  
-                  fontSize: NavBar.iconSize,                                                        
+                  textAlign: "center",
                   color: context?.theme.pallete(Shade.LightSurface),
+                  height: "21px",
+                  fontSize: "12px",
                 }}
               >
-                {item.icon}
-              </span>
-            </NavLink>
-            <p
-              key={"navbar-label-" + i}
-              style={{                
-                textAlign: "center",                
-                color: context?.theme.pallete(Shade.LightSurface),
-                height: "21px",
-                fontSize: "12px"
-                
-              }}
-            >
-              {item.label}
-            </p>
-          </div>
+                {item.label}
+              </p>
+            </div>
           </>
         ))}
       </div>

@@ -18,7 +18,7 @@ const ColorMode = () => {
       context?.toggleDarkMode();      
     };
     
-    return (      <button id="dark-mode-button" style={{ borderRadius: 100, background: "none",
+    return (      <button id="dark-mode-button" style={{ borderRadius: 100, background: context?.theme.pallete(Shade.Surface),
             padding: "5px",
             height: "34px",
             width: "34px",

@@ -1,5 +1,5 @@
 import React, { createContext, FC, useLayoutEffect, useState } from "react";
-import { EndlessSpring, isDarkMode, ITheme, Shade } from "../../style";
+import { EndlessSpring, Icecream, isDarkMode, ITheme, Shade } from "../../style";
 
 type ProviderProps = {
     children: React.ReactNode
@@ -37,7 +37,7 @@ const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
         return () => {
           document.documentElement.style.backgroundColor = "";
         };
-      }, [isDark]);
+      }, [toggleDarkMode]);
 
       return <ThemeContext.Provider value={themeContext}>{children}</ThemeContext.Provider>
 }
