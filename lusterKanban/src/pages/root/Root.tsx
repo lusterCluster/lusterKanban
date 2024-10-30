@@ -1,15 +1,14 @@
+import { Outlet } from "react-router-dom";
 import DesktopLayout from "../../layout/desktop/MainLayout";
 import MobileLayout from "../../layout/mobile/MainLayout";
+import Home from "../home/Home";
 
 const Root = () => {
   return (
-    <div>
-      <DesktopLayout>
-        <div style={{fontSize: 55}}> Hello world</div>
-      </DesktopLayout>
-      <MobileLayout>
-        <div></div>
-      </MobileLayout>
+    <div className="desktop"        >
+      <DesktopLayout/>      
+      <MobileLayout/>
+      
     </div>
   );
 };

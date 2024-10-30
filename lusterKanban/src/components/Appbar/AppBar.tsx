@@ -19,7 +19,7 @@ const AppBar = () => {
       }}
     >
 
-      <section style={{ gridColumnStart: 3, display: "flex", justifyContent: "end", paddingRight:"21px" }}>
+      <section style={{ gridColumnStart: 3, display: "flex", justifyContent: "end", paddingRight:"150px" }}>
         <ColorMode/>
       </section>
     </div>

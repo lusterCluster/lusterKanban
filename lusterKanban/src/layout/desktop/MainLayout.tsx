@@ -4,23 +4,21 @@ import { EndlessSpring } from "../../store/style";
 import AppBar from "../../components/Appbar/AppBar";
 import { ThemeContext } from "../../store/context/theme";
 import NavigationRail from "../../components/Navigation/NavRail/NavigationRail";
-import { Destinations } from "../mobile/MainLayout";
+import { Destinations } from "../../pages/navigation/navigation";
+
 
 type Props = {
   children: React.ReactNode;
 };
 
-const DesktopLayout: FC<Props> = ({ children }) => {  
+const DesktopLayout = ({  }) => {  
   return (
     <>
-      <div
-        className="desktop"        
+      <div        
       >
         <NavigationRail navrail={{destinations: Destinations}} />
-        <AppBar />
-        {children}
-      </div>
-      <Outlet />
+        <AppBar />        
+      </div>      
     </>
   );
 };

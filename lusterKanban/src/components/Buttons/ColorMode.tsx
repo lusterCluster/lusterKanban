@@ -4,17 +4,17 @@ import { isDarkMode, Shade } from "../../store/style";
 
 const ColorMode = () => {
     const context = useContext(ThemeContext);
-    const [icon, setIcon] = useState(localStorage.getItem("isDark") === "0" ? "light_mode" : "dark_mode")
+    const [icon, setIcon] = useState(isDarkMode() ? "dark_mode" : "light_mode")
     const handleMouseEnter = () => {
       document.getElementById("dark-mode-button")!.style.backgroundColor = context!.theme.pallete(isDarkMode() ? Shade.Dark : Shade.Focus) 
     }
     const handleMouseLeave = () => {
       document.getElementById("dark-mode-button")!.style.backgroundColor =  context!.theme.pallete(isDarkMode() ? Shade.SecondaryDark : Shade.Surface)
     }
-    const [isOn, setIsOn] = useState(false);
+    // const [isOn, setIsOn] = useState(isDarkMode() ? true : false);
     const handleToggle = () => {
-      setIsOn(!isOn);
-      setIcon(isOn ? "light_mode" : "dark_mode")
+      // setIsOn(!isDarkMode());
+      setIcon(isDarkMode() ? "light_mode" : "dark_mode")
       context?.toggleDarkMode();      
     };
     

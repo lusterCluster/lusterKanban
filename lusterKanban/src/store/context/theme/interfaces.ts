@@ -11,11 +11,9 @@ export type ThemeIdTypes = keyof typeof THEME_ID;
 
 export interface ITheme {
   id: ThemeIdTypes
-  // isDark: boolean
-  // toggleDarkMode: () => void
-  background: string
   pallete: (shade: Shade) => string
   typography: TextType
+  grayScale: (Shade: Shade) => string
 }
 export type ThemeGlobalsType = {
   text: TextType;

@@ -2,10 +2,13 @@
   display: grid;
   padding: 0px;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-rows: repeat(6, 1fr);
   height: 100vh;
-  margin-top: 100px;
+  margin-left: 100px;
+  margin-top: 50px;
   place-items: center;
+  row-gap: 50px;
+  column-gap: 13px;
 }
 
 .mobile {

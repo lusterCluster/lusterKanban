@@ -1,5 +1,7 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styles from './Divider.module.css'
+import { ThemeContext } from '../../store/context/theme';
+import { isDarkMode, Shade } from '../../store/style';
 type Props = {
     isActive: "active" | "inactive";
     fullWidht: boolean;
@@ -7,7 +9,7 @@ type Props = {
   };
   
 const Divider = (props: Props) => {
-    
+    const context = useContext(ThemeContext)
     // const containerClass = props.fullWidht
     //   ? convertToTailwindClass (divider.divderWidhtAttributes.fullWidth)
     //   : convertToTailwindClass(divider.divderWidhtAttributes.inset);
@@ -34,6 +36,7 @@ const Divider = (props: Props) => {
               className={
                 styles.dividerAttributes                
               }
+              style={{background: context?.theme.pallete(isDarkMode() ? Shade.LightSurface : Shade.Surface)}}
             ></div>
           </div>
             </>

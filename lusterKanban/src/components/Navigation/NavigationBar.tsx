@@ -3,7 +3,8 @@ import { NavBar } from "./navbar";
 import { ThemeContext } from "../../store/context/theme";
 import { Link, NavigationType, NavLink } from "react-router-dom";
 import { isDarkMode, Shade } from "../../store/style";
-import { DestinationsType } from "./interfaces";
+import { DestinationsType } from "../../pages/navigation/interfaces";
+
 
 const Styles = {
   container: {

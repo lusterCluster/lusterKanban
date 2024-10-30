@@ -62,11 +62,11 @@ const NebulaPallete: ShadeTypes = {
 const IceCreamPallete: ShadeTypes = {
   id: "Icecream",
   "700": "#23002E",
-  "600": "#4F0065",
-  "500": "#8200A4",
+  "600": "#433147",
+  "500": "#533d59",
   "400": "#B900E7",
   "300": "#D361FF",
-  "200": "#E0A3FF",
+  "200": "#e9cafc",
   "100": "#F1DAFF",
 };
 
@@ -101,12 +101,22 @@ const getSkyPallete = getShade("Sky")
 
 
 
-const Palletes: ShadeTypes[] = [EndlessSpringPallete, NebulaPallete, ChainsawPallete, IceCreamPallete, SkyPallete];
+const Palletes: ShadeTypes[] = [EndlessSpringPallete, NebulaPallete, ChainsawPallete, IceCreamPallete, SkyPallete, GrayScale];
 
 //-------------------------- Theme -------------------------- //
 export const isDarkMode = () => {
   const isDark = localStorage.getItem("isDark");
-  return isDark === "0" ? true : isDark === "1" ? false : undefined;
+  if(isDark === null) {
+    throw new Error("dark mode was not found");
+    
+  }
+  if(isDark === "0") {
+    return true
+  }
+  if(isDark === "1") {
+    return false
+  }
+  throw new Error("dark mode was not found");
 };
 
 
@@ -135,12 +145,8 @@ export const EndlessSpring: ITheme = {
     },
      color: getEndlessSpringPallete(isDarkMode() ? Shade.LightSurface : Shade.Dark),
     
-  },
-
-  
-    background: getEndlessSpringPallete(isDarkMode() ? Shade.Dark : Shade.LightSurface),
-  
-    
+  },      
+    grayScale: getGrayScalePallete,
     pallete: getEndlessSpringPallete
   }
 export const Icecream: ITheme = {
@@ -168,13 +174,11 @@ export const Icecream: ITheme = {
     },
      color: getEndlessSpringPallete(isDarkMode() ? Shade.LightSurface : Shade.Dark),
     
-  },
-
-  
-    background: getEndlessSpringPallete(isDarkMode() ? Shade.Dark : Shade.LightSurface),
+  },    
   
     
-    pallete: getIcecreamPallete
+    pallete: getIcecreamPallete,
+    grayScale: getGrayScalePallete
   }
 
 
