@@ -107,7 +107,7 @@ const Palletes: ShadeTypes[] = [EndlessSpringPallete, NebulaPallete, ChainsawPal
 export const isDarkMode = () => {
   const isDark = localStorage.getItem("isDark");
   if(isDark === null) {
-    throw new Error("dark mode was not found");
+    localStorage.setItem("isDark", "0")
     
   }
   if(isDark === "0") {
@@ -115,8 +115,10 @@ export const isDarkMode = () => {
   }
   if(isDark === "1") {
     return false
+  } else {
+
+    localStorage.setItem("isDark", "0")
   }
-  throw new Error("dark mode was not found");
 };
 
 

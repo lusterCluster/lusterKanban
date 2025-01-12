@@ -30,8 +30,7 @@ const ProvideThemeContext:FC<ProviderProps> = ({children}) => {
         document.documentElement.style.color = theme.pallete(isDarkMode() ? Shade.LightSurface : Shade.Dark)
         document.documentElement.style.fontFamily = theme.typography.fontFamily;
         document.documentElement.style.fontSize = theme.typography.fontSize[16];
-        console.log(localStorage.getItem("isDark"))
-        // localStorage.setItem("isDark", isDark ? "0": "1")
+        console.log(localStorage.getItem("isDark"))        
     
         // Limpiar el efecto al desmontar el componente si es necesario
         return () => {
